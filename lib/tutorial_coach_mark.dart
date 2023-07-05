@@ -3,7 +3,6 @@ library tutorial_coach_mark;
 import 'dart:async';
 import 'dart:ui';
 
-
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:tutorial_coach_mark/src/target/target_focus.dart';
@@ -21,7 +20,7 @@ class TutorialCoachMark {
   final FutureOr<void> Function(TargetFocus, TapDownDetails)?
       onClickTargetWithTapPosition;
   final FutureOr<void> Function(TargetFocus)? onClickOverlay;
-  final Function()? onFinish;
+  VoidCallback? onFinish;
   final double paddingFocus;
   final Function()? onSkip;
   final AlignmentGeometry alignSkip;
@@ -129,9 +128,8 @@ class TutorialCoachMark {
     if (_overlayEntry == null) {
       _overlayEntry = _buildOverlay(rootOverlay: rootOverlay);
       overlay.insert(_overlayEntry!);
-        BackButtonInterceptor.add(_backButtonInterceptor);
-      }
-
+      BackButtonInterceptor.add(_backButtonInterceptor);
+    }
   }
 
   void finish() {
